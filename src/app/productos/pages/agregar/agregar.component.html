@@ -1,0 +1,55 @@
+<!-- <h1 class="mt-5">Agregar Producto <small>{{ texto1 }}</small></h1> -->
+<h1 class="mt-5">Agregar Producto</h1>
+<hr>
+
+<form [formGroup]="miFormulario">
+
+  <div class="row g-3 align-items-center mb-3">
+
+    <div class="col-auto">
+      <label class="col-form-label">Nombre:</label>
+    </div>
+
+    <div class="col-auto">
+      <input type="text" class="form-control" formControlName="nombre" />
+    </div>
+
+    <div class="col-auto">
+      <!-- <span
+        class="form-text"
+        miDirectivaPersonalizada
+        mensajeErr="Este campo es requerido"
+        *ngIf="hasError('nombre')"></span> -->
+      <span
+        error-msg
+        [message]="texto1"
+        [color]="color"
+        [valido]="!hasError('nombre')"></span>
+        <!-- *ngIf="hasError('nombre')">Este campo es requerido</span> -->
+        <!-- class="form-text" -->
+        <!-- color="red" -->
+        <!-- [color]="colorSeleccionado" -->
+        <!-- message="Debe de ingresar este campo" -->
+    </div>
+
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">
+      <button class="btn btn-primary" type="submit" (click)="cambiarNombre()">Guardar</button>
+      &nbsp;
+      <button class="btn btn-primary" type="submit" (click)="cambiarColor()">Cambiar Color</button>
+    </div>
+  </div>
+
+</form>
+
+<h3 class="mt-5">Formulario</h3>
+<pre>Valid: {{ miFormulario.value | json }}</pre>
+<pre>Valid: {{ miFormulario.valid }}</pre>
+
+<div class="row mt-5" *customIf="miFormulario.valid">
+  <div class="col">
+    <div class="alert alert-primary">Todo OK!</div>
+  </div>
+</div>
